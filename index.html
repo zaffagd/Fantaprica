@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantacalcio - Hall of Fame & Storico</title>
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d8f3dc;
+            --text-dark: #212529;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .competitions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 5px solid var(--secondary-color);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+        }
+        .history-box {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #343a40;
+            color: white;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏆 Lega Fantacalcio Storica</h1>
+        <p>Oltre 30 anni di gloria, sfide, campionati, mundialito e coppe</p>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Le Nostre Competizioni (Stagione 2025/2026)</h2>
+        
+        <div class="competitions-grid">
+            <div class="card">
+                <h3>⚽ Campionato</h3>
+                <p>La competizione principale a girone unico. Calendario, tabellini completi in HTML e voti dei singoli calciatori giornata per giornata.</p>
+                <a href="#" class="btn">Vai al Campionato</a>
+            </div>
+            
+            <div class="card">
+                <h3>🌍 Mundialito</h3>
+                <p>La coppa parallela con gironi e sfide appassionanti. Consulta le formazioni schierate e i risultati dagli archivi storici.</p>
+                <a href="#" class="btn">Vai al Mundialito</a>
+            </div>
+            
+            <div class="card">
+                <h3>🏆 Fantacoppa</h3>
+                <p>Tabellone a eliminazione diretta. Scontri al cardiopalma basati sui file storici e sulle rose ufficiali della lega.</p>
+                <a href="#" class="btn">Vai alla Fantacoppa</a>
+            </div>
+        </div>
+
+        <div class="history-box">
+            <h3 style="color: var(--primary-color); margin-top: 0;">📜 L'Archivio Storico (30 Anni)</h3>
+            <p>Stiamo integrando progressivamente tutti i dati raccolti dalle origini della lega: potrai esplorare le stagioni passate, l'albo d'oro e le statistiche storiche di tutte le squadre.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Lega Fantacalcio Storica. Powered by AI & Passione.</p>
+    </footer>
+
+</body>
+</html>
