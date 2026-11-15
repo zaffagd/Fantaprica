@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6ª Giornata & Classifica - 31° Campionato 2025/2026 - Fantaprica</title>
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d8f3dc;
+            --text-dark: #212529;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 1.8rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            transition: background 0.2s;
+        }
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        header p {
+            margin: 0.4rem 0 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.4rem;
+        }
+        
+        .grid-main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media(min-width: 900px) {
+            .grid-main {
+                grid-template-columns: 1.1fr 0.9fr;
+            }
+        }
+
+        .matches-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .match-card {
+            background: white;
+            border-radius: 8px;
+            padding: 0.9rem 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .team {
+            flex: 1;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .team.home { text-align: right; }
+        .team.away { text-align: left; }
+        .team.winner { color: var(--primary-color); }
+        .match-score {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 1rem;
+            text-align: center;
+            min-width: 70px;
+        }
+        .match-details {
+            font-size: 0.75rem;
+            color: #666;
+            text-align: center;
+            margin-top: 0.2rem;
+        }
+
+        .table-wrapper {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        th, td {
+            padding: 0.6rem 0.4rem;
+            border-bottom: 1px solid #eee;
+        }
+        th { font-weight: 600; }
+        td.team-col, th.team-col { text-align: left; padding-left: 0.8rem; }
+        tbody tr:hover { background-color: #f8f9fa; }
+
+        /* Scontri diretti formazioni */
+        .matchup-container {
+            margin-top: 3rem;
+        }
+        .matchup-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+        .matchup-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+        .matchup-header span {
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .matchup-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        @media(min-width: 768px) {
+            .matchup-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .team-lineup-pane {
+            padding: 1.2rem;
+        }
+        .team-lineup-pane:first-child {
+            border-right: 1px solid #eee;
+        }
+        .pane-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.3rem;
+        }
+        .lineup-roles {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .role-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            align-items: center;
+        }
+        .role-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        .player-chip {
+            background: #f1f3f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            display: inline-flex;
+            gap: 0.3rem;
+            align-items: center;
+        }
+        .player-chip.bonus {
+            background: #e8f5e9;
+            border-left: 3px solid var(--secondary-color);
+            font-weight: 600;
+        }
+        .player-chip.malus {
+            background: #ffebee;
+            border-left: 3px solid #c62828;
+            font-weight: 600;
+        }
+        .player-score {
+            font-weight: 700;
+            color: #333;
+            margin-left: 0.2rem;
+        }
+        .bonus-tag {
+            font-size: 0.7rem;
+            color: var(--secondary-color);
+            background: rgba(45, 106, 79, 0.1);
+            padding: 0 0.3rem;
+            border-radius: 3px;
+        }
+        .malus-tag {
+            font-size: 0.7rem;
+            color: #c62828;
+            background: rgba(198, 40, 40, 0.1);
+            padding: 0 0.3rem;
+            border-radius: 3px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #343a40;
+            color: white;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../campionato.html" class="back-link">← Torna al Riepilogo Campionato</a>
+        <h1>⚽ 6ª Giornata</h1>
+        <p>Stagione 2025/2026 • 2 Novembre 2025</p>
+    </header>
+
+    <div class="container">
+
+        <div class="grid-main">
+            
+            <!-- RISULTATI -->
+            <div>
+                <h2 class="section-title" style="margin-top:0;">Risultati Incontri</h2>
+                <div class="matches-stack">
+                    <div class="match-card">
+                        <div class="team home winner">S.S. Serenissimi</div>
+                        <div>
+                            <div class="match-score">3 - 0</div>
+                            <div class="match-details">75.5 - 61.5</div>
+                        </div>
+                        <div class="team away">F.C. Borgorosso</div>
+                    </div>
+
+                    <div class="match-card">
+                        <div class="team home">F.C. Gotto</div>
+                        <div>
+                            <div class="match-score">1 - 5</div>
+                            <div class="match-details">68.0 - 83.0</div>
+                        </div>
+                        <div class="team away winner">A.C. Equinox</div>
+                    </div>
+
+                    <div class="match-card">
+                        <div class="team home">F.T. Merengues</div>
+                        <div>
+                            <div class="match-score">0 - 2</div>
+                            <div class="match-details">62.0 - 73.5</div>
+                        </div>
+                        <div class="team away winner">A.C. Lemonsoda</div>
+                    </div>
+
+                    <div class="match-card">
+                        <div class="team home">Nonloso</div>
+                        <div>
+                            <div class="match-score">1 - 1</div>
+                            <div class="match-details">68.0 - 67.0</div>
+                        </div>
+                        <div class="team away">F.C. Azulgrana</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLASSIFICA -->
+            <div>
+                <h2 class="section-title" style="margin-top:0;">Classifica dopo 6ª Giornata</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th class="team-col">Squadra</th>
+                                <th>PT</th>
+                                <th>Score</th>
+                                <th>G</th>
+                                <th>V</th>
+                                <th>N</th>
+                                <th>P</th>
+                                <th>DR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="team-col">A.C. Equinox</td>
+                                <td><strong>16</strong></td>
+                                <td>475.0</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>+14</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td class="team-col">A.C. Lemonsoda</td>
+                                <td><strong>12</strong></td>
+                                <td>424.0</td>
+                                <td>6</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>+3</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td class="team-col">S.S. Serenissimi</td>
+                                <td><strong>10</strong></td>
+                                <td>414.5</td>
+                                <td>6</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>+2</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td class="team-col">F.C. Gotto</td>
+                                <td><strong>10</strong></td>
+                                <td>421.5</td>
+                                <td>6</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td class="team-col">Nonloso</td>
+                                <td><strong>8</strong></td>
+                                <td>400.0</td>
+                                <td>6</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>-2</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td class="team-col">F.C. Azulgrana</td>
+                                <td><strong>6</strong></td>
+                                <td>412.0</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>-3</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td class="team-col">F.T. Merengues</td>
+                                <td><strong>4</strong></td>
+                                <td>408.5</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>4</td>
+                                <td>-2</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td class="team-col">F.C. Borgorosso</td>
+                                <td><strong>1</strong></td>
+                                <td>380.5</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>-12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SCONTRI DIRETTI E FORMAZIONI CON VOTI E BONUS/MALUS -->
+        <div class="matchup-container">
+            <h2 class="section-title">⚔️ Scontri Diretti e Formazioni Titolari</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">Confronto diretto tra le squadre con voti e dettaglio di bonus/malus dei singoli giocatori:</p>
+
+            <!-- SCONTRO 1: Serenissimi vs Borgorosso -->
+            <div class="matchup-box">
+                <div class="matchup-header">
+                    <span>S.S. Serenissimi - F.C. Borgorosso</span>
+                    <span>3 - 0 (Tot. 75.5 - 61.5)</span>
+                </div>
+                <div class="matchup-grid">
+                    <!-- Serenissimi -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>S.S. Serenissimi</span> <span>Tot: 75.5</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip malus">Sommer <span class="player-score">4.5</span> <span class="malus-tag">-1 Gol subito</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Dumfries <span class="player-score">5.5</span></span> <span class="player-chip">Coco <span class="player-score">6.0</span></span> <span class="player-chip bonus">Holm <span class="player-score">7.5</span> <span class="bonus-tag">+1 Assist</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip bonus">Calhanoglu <span class="player-score">7.5</span> <span class="bonus-tag">+1 Assist</span></span> <span class="player-chip bonus">Malinovskiy <span class="player-score">10.0</span> <span class="bonus-tag">+3 Gol</span></span> <span class="player-chip">McTominay <span class="player-score">6.0</span></span> <span class="player-chip">Mandragora <span class="player-score">5.0</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip">Nzola <span class="player-score">6.0</span></span> <span class="player-chip bonus">Adams C. <span class="player-score">10.0</span> <span class="bonus-tag">+3 Gol</span></span> <span class="player-chip">Laurientè <span class="player-score">5.5</span></span></div>
+                        </div>
+                    </div>
+                    <!-- Borgorosso -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>F.C. Borgorosso</span> <span>Tot: 61.5</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip malus">De Gea <span class="player-score">5.0</span> <span class="malus-tag">-1 Gol subito</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Bellanova <span class="player-score">6.5</span></span> <span class="player-chip malus">Wesley <span class="player-score">5.5</span> <span class="malus-tag">-0.5 Amm.</span></span> <span class="player-chip">Akanji <span class="player-score">6.0</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip">Sucic P. <span class="player-score">5.5</span></span> <span class="player-chip malus">Fofana Y. <span class="player-score">4.5</span> <span class="malus-tag">-0.5 Amm.</span></span> <span class="player-chip">Konè M. <span class="player-score">5.5</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip">Hojlund <span class="player-score">5.0</span></span> <span class="player-chip malus">Politano <span class="player-score">5.5</span> <span class="malus-tag">-0.5 Amm.</span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCONTRO 2: Gotto vs Equinox -->
+            <div class="matchup-box">
+                <div class="matchup-header">
+                    <span>F.C. Gotto - A.C. Equinox</span>
+                    <span>1 - 5 (Tot. 68.0 - 83.0)</span>
+                </div>
+                <div class="matchup-grid">
+                    <!-- Gotto -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>F.C. Gotto</span> <span>Tot: 68.0</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip bonus">Milinkovic V. <span class="player-score">10.0</span> <span class="bonus-tag">+1 Assist</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Buongiorno <span class="player-score">6.0</span></span> <span class="player-chip">Di Lorenzo <span class="player-score">5.5</span></span> <span class="player-chip">Marusic <span class="player-score">6.5</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip">Pasalic <span class="player-score">5.0</span></span> <span class="player-chip">Zalewski <span class="player-score">4.5</span></span> <span class="player-chip malus">Anguissa <span class="player-score">5.5</span> <span class="malus-tag">-0.5 Amm.</span></span> <span class="player-chip bonus">Guendouzi <span class="player-score">7.5</span> <span class="bonus-tag">+1 Assist</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip">Orsolini <span class="player-score">6.5</span></span> <span class="player-chip">Dia <span class="player-score">5.0</span></span> <span class="player-chip">Gudmundsson <span class="player-score">4.0</span></span></div>
+                        </div>
+                    </div>
+                    <!-- Equinox -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>A.C. Equinox</span> <span>Tot: 83.0</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip bonus">Maignan <span class="player-score">11.0</span> <span class="bonus-tag">+1 Assist</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Solet <span class="player-score">6.0</span></span> <span class="player-chip bonus">Cambiaso <span class="player-score">9.5</span> <span class="bonus-tag">+3 Gol</span></span> <span class="player-chip">Maripan <span class="player-score">7.0</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip">Modric <span class="player-score">7.0</span></span> <span class="player-chip">Atta <span class="player-score">7.0</span></span> <span class="player-chip">Saelemaekers <span class="player-score">7.0</span></span> <span class="player-chip malus">Ederson <span class="player-score">4.5</span> <span class="malus-tag">-0.5 Amm.</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip bonus">Simeone <span class="player-score">10.0</span> <span class="bonus-tag">+3 Gol</span></span> <span class="player-chip">Soulè <span class="player-score">6.0</span></span> <span class="player-chip bonus">Leao <span class="player-score">8.0</span> <span class="bonus-tag">+1 Assist</span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCONTRO 3: Merengues vs Lemonsoda -->
+            <div class="matchup-box">
+                <div class="matchup-header">
+                    <span>F.T. Merengues - A.C. Lemonsoda</span>
+                    <span>0 - 2 (Tot. 62.0 - 73.5)</span>
+                </div>
+                <div class="matchup-grid">
+                    <!-- Merengues -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>F.T. Merengues</span> <span>Tot: 62.0</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip malus">Carnesecchi <span class="player-score">5.5</span> <span class="malus-tag">-1 Gol subito</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Zappacosta <span class="player-score">6.0</span></span> <span class="player-chip">Baschirotto <span class="player-score">5.5</span></span> <span class="player-chip">Canestrelli <span class="player-score">6.0</span></span> <span class="player-chip">Ndicka <span class="player-score">5.5</span></span> <span class="player-chip">Bastoni A. <span class="player-score">5.0</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip">Vlasic <span class="player-score">6.0</span></span> <span class="player-chip">Barella <span class="player-score">6.0</span></span> <span class="player-chip">Lobotka <span class="player-score">s.v.</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip bonus">Berardi <span class="player-score">9.0</span> <span class="bonus-tag">+3 Gol</span></span> <span class="player-chip">Esposito F. <span class="player-score">5.5</span></span></div>
+                        </div>
+                    </div>
+                    <!-- Lemonsoda -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>A.C. Lemonsoda</span> <span>Tot: 73.5</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip">Provedel <span class="player-score">6.5</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Gila <span class="player-score">6.5</span></span> <span class="player-chip malus">Mancini G. <span class="player-score">5.5</span> <span class="malus-tag">-0.5 Amm.</span></span> <span class="player-chip">Dimarco <span class="player-score">5.5</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip bonus">Bernabè <span class="player-score">9.5</span> <span class="bonus-tag">+3 Gol</span></span> <span class="player-chip malus">Perrone <span class="player-score">5.5</span> <span class="malus-tag">-0.5 Amm.</span></span> <span class="player-chip malus">Fagioli <span class="player-score">3.5</span> <span class="malus-tag">-0.5 Amm.</span></span> <span class="player-chip">Ricci S. <span class="player-score">6.5</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip">Martinez L. <span class="player-score">5.0</span></span> <span class="player-chip bonus">Castro <span class="player-score">13.5</span> <span class="bonus-tag">+6 Gol (2) +1 Ass</span></span> <span class="player-chip">Pellegrino M. <span class="player-score">6.0</span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCONTRO 4: Nonloso vs Azulgrana -->
+            <div class="matchup-box">
+                <div class="matchup-header">
+                    <span>Nonloso - F.C. Azulgrana</span>
+                    <span>1 - 1 (Tot. 68.0 - 67.0)</span>
+                </div>
+                <div class="matchup-grid">
+                    <!-- Nonloso -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>Nonloso</span> <span>Tot: 68.0</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip malus">Di Gregorio <span class="player-score">5.0</span> <span class="malus-tag">-1 Gol subito</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Gatti <span class="player-score">5.0</span></span> <span class="player-chip">Estupinan <span class="player-score">s.v.</span></span> <span class="player-chip">Kalulu <span class="player-score">6.0</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip">Paz N. <span class="player-score">5.5</span></span> <span class="player-chip">Thuram K. <span class="player-score">5.5</span></span> <span class="player-chip">Locatelli <span class="player-score">6.0</span></span> <span class="player-chip">Ferguson L. <span class="player-score">s.v.</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip bonus">Zaccagni <span class="player-score">10.0</span> <span class="bonus-tag">+3 Gol</span></span> <span class="player-chip">Vlahovic <span class="player-score">6.0</span></span> <span class="player-chip">Nkunku <span class="player-score">5.5</span></span></div>
+                        </div>
+                    </div>
+                    <!-- Azulgrana -->
+                    <div class="team-lineup-pane">
+                        <div class="pane-title"><span>F.C. Azulgrana</span> <span>Tot: 67.0</span></div>
+                        <div class="lineup-roles">
+                            <div class="role-group"><span class="role-tag">Por</span> <span class="player-chip malus">Svilar <span class="player-score">6.0</span> <span class="malus-tag">-1 Gol subito</span></span></div>
+                            <div class="role-group"><span class="role-tag">Dif</span> <span class="player-chip">Gabbia <span class="player-score">6.5</span></span> <span class="player-chip">Norton-Cuffy <span class="player-score">6.5</span></span> <span class="player-chip">Djimsiti <span class="player-score">6.0</span></span> <span class="player-chip bonus">Pavlovic <span class="player-score">10.5</span> <span class="bonus-tag">+3 Gol +1 Ass</span></span></div>
+                            <div class="role-group"><span class="role-tag">Cen</span> <span class="player-chip">Freuler <span class="player-score">6.0</span></span> <span class="player-chip malus">Casadei <span class="player-score">5.5</span> <span class="malus-tag">-0.5 Amm.</span></span> <span class="player-chip">Karlstrom <span class="player-score">7.0</span></span></div>
+                            <div class="role-group"><span class="role-tag">Att</span> <span class="player-chip malus">Dybala <span class="player-score">2.0</span> <span class="malus-tag">-1 Esp.</span></span> <span class="player-chip">Pinamonti <span class="player-score">6.0</span></span> <span class="player-chip malus">Kean <span class="player-score">5.0</span> <span class="malus-tag">-0.5 Amm.</span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Fantaprica.it • Lega Fanta-Prica dal 1995/1996</p>
+    </footer>
+
+</body>
+</html>
