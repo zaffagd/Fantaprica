@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantacalcio - Hall of Fame & Storico</title>
+    <title>Fantaprica - Lega Fantacalcio Storica</title>
     <style>
         :root {
             --primary-color: #1b4332;
@@ -41,56 +41,74 @@
             margin: 2rem auto;
             padding: 0 1rem;
         }
-        .competitions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border-top: 5px solid var(--secondary-color);
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-        .card h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-        }
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: background-color 0.2s;
-        }
-        .btn:hover {
-            background-color: var(--primary-color);
-        }
         .section-title {
             font-size: 1.8rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
             border-bottom: 2px solid #dee2e6;
             padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
         }
-        .history-box {
+        /* Griglia delle Stagioni */
+        .seasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .season-card {
             background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            padding: 1.2rem;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .season-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .season-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        /* Griglia delle Squadre */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .team-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .team-card:hover {
+            transform: translateY(-3px);
+        }
+        .team-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: var(--primary-color);
         }
         footer {
             text-align: center;
@@ -105,43 +123,86 @@
 <body>
 
     <header>
-        <h1>🏆 Lega Fantacalcio Storica</h1>
-        <p>Oltre 30 anni di gloria, sfide, campionati, mundialito e coppe</p>
+        <h1>🏆 Fantaprica</h1>
+        <p>Lega Fantacalcio Storica • Oltre 30 anni di gloria e competizioni</p>
     </header>
 
     <div class="container">
         
-        <h2 class="section-title">Le Nostre Competizioni (Stagione 2025/2026)</h2>
-        
-        <div class="competitions-grid">
-            <div class="card">
-                <h3>⚽ Campionato</h3>
-                <p>La competizione principale a girone unico. Calendario, tabellini completi in HTML e voti dei singoli calciatori giornata per giornata.</p>
-                <a href="#" class="btn">Vai al Campionato</a>
+        <!-- SEZIONE STAGIONI (2015/2016 - 2025/2026) -->
+        <h2 class="section-title">📅 Archivio Stagioni</h2>
+        <div class="seasons-grid">
+            <div class="season-card">
+                <h4>2025/2026</h4>
+                <a href="stagioni/2025-2026/index.html" class="btn">Visualizza</a>
             </div>
-            
-            <div class="card">
-                <h3>🌍 Mundialito</h3>
-                <p>La coppa parallela con gironi e sfide appassionanti. Consulta le formazioni schierate e i risultati dagli archivi storici.</p>
-                <a href="#" class="btn">Vai al Mundialito</a>
+            <div class="season-card">
+                <h4>2024/2025</h4>
+                <a href="stagioni/2024-2025/index.html" class="btn">Visualizza</a>
             </div>
-            
-            <div class="card">
-                <h3>🏆 Fantacoppa</h3>
-                <p>Tabellone a eliminazione diretta. Scontri al cardiopalma basati sui file storici e sulle rose ufficiali della lega.</p>
-                <a href="#" class="btn">Vai alla Fantacoppa</a>
+            <div class="season-card">
+                <h4>2023/2024</h4>
+                <a href="stagioni/2023-2024/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2022/2023</h4>
+                <a href="stagioni/2022-2023/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2021/2022</h4>
+                <a href="stagioni/2021-2022/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2020/2021</h4>
+                <a href="stagioni/2020-2021/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2019/2020</h4>
+                <a href="stagioni/2019-2020/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2018/2019</h4>
+                <a href="stagioni/2018-2019/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2017/2018</h4>
+                <a href="stagioni/2017-2018/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2016/2017</h4>
+                <a href="stagioni/2016-2017/index.html" class="btn">Visualizza</a>
+            </div>
+            <div class="season-card">
+                <h4>2015/2016</h4>
+                <a href="stagioni/2015-2016/index.html" class="btn">Visualizza</a>
             </div>
         </div>
 
-        <div class="history-box">
-            <h3 style="color: var(--primary-color); margin-top: 0;">📜 L'Archivio Storico (30 Anni)</h3>
-            <p>Stiamo integrando progressivamente tutti i dati raccolti dalle origini della lega: potrai esplorare le stagioni passate, l'albo d'oro e le statistiche storiche di tutte le squadre.</p>
+        <!-- SEZIONE SQUADRE -->
+        <h2 class="section-title">🛡️ Le Squadre</h2>
+        <div class="teams-grid">
+            <div class="team-card">
+                <h4>A.C. Lemonsoda</h4>
+                <a href="squadre/lemonsoda.html" class="btn">Profilo Squadra</a>
+            </div>
+            <div class="team-card">
+                <h4>F.T. Merengues</h4>
+                <a href="squadre/merengues.html" class="btn">Profilo Squadra</a>
+            </div>
+            <div class="team-card">
+                <h4>A.C. Equinox</h4>
+                <a href="squadre/equinox.html" class="btn">Profilo Squadra</a>
+            </div>
+            <div class="team-card">
+                <h4>F.C. Gotto</h4>
+                <a href="squadre/gotto.html" class="btn">Profilo Squadra</a>
+            </div>
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Lega Fantacalcio Storica. Powered by AI & Passione.</p>
+        <p>&copy; 2026 Fantaprica.it • Tutti i diritti riservati</p>
     </footer>
 
 </body>
