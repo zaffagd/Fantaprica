@@ -1,1 +1,661 @@
 
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stagione 2025/2026 - Fantaprica</title>
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d8f3dc;
+            --gold-color: #d4af37;
+            --text-dark: #212529;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            transition: background 0.2s;
+        }
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section-title {
+            font-size: 1.7rem;
+            color: var(--primary-color);
+            margin: 2.5rem 0 1.2rem;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+        }
+        /* Sezione Vincitori */
+        .winners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .winner-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.06);
+            border-top: 5px solid var(--gold-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .winner-card h3 {
+            margin: 0 0 0.5rem;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .winner-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0.4rem 0;
+        }
+        .winner-meta {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+        /* Sezione Rose / Squadre */
+        .rosters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+        }
+        .roster-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.3rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--primary-color);
+        }
+        .roster-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.7rem;
+            margin-bottom: 0.8rem;
+        }
+        .roster-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+        .roster-header span {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 600;
+        }
+        .role-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 0.8rem 0 0.3rem;
+            letter-spacing: 0.5px;
+        }
+        .player-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .player-list li {
+            padding: 0.22rem 0;
+            border-bottom: 1px dashed #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .player-out {
+            color: #888;
+        }
+        .player-out span.name {
+            text-decoration: line-through;
+        }
+        .badge-in {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+        .badge-out {
+            background-color: #ffe3e3;
+            color: #a4161a;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+        .legend {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            line-height: 1.6;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #343a40;
+            color: white;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../../index.html" class="back-link">← Torna all'Archivio Stagioni</a>
+        <h1>🏆 Stagione 2025/2026 (XXXI Lega Fanta-Prica)</h1>
+        <p>Albo d'oro stagionale e rose complete (asta iniziale e mercato di riparazione)</p>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. SEZIONE VINCITORI DELLE TRE COMPETIZIONI -->
+        <h2 class="section-title">🥇 I Vincitori della Stagione</h2>
+        <div class="winners-grid">
+            <div class="winner-card">
+                <div>
+                    <h3>⚽ 31° Campionato</h3>
+                    <div class="winner-name">A.C. Lemonsoda</div>
+                    <div class="winner-meta">4° titolo • Double Campionato / FP-Cup<br>2° F.T. Merengues (45 pt) • 3° S.S. Serenissimi (41 pt)</div>
+                </div>
+                <a href="campionato.html" class="btn">Dettagli Campionato</a>
+            </div>
+
+            <div class="winner-card">
+                <div>
+                    <h3>🏆 28° F.P.-Cup</h3>
+                    <div class="winner-name">A.C. Lemonsoda</div>
+                    <div class="winner-meta">5° titolo • 1.517,0 punti totali<br>2° S.S. Serenissimi (1.503,0) • 3° F.C. Azulgrana (1.490,0)</div>
+                </div>
+                <a href="fantacoppa.html" class="btn">Dettagli F.P.-Cup</a>
+            </div>
+
+            <div class="winner-card">
+                <div>
+                    <h3>🌍 26° Mundialito</h3>
+                    <div class="winner-name">A.C. Equinox</div>
+                    <div class="winner-meta">2° titolo • Coppa del Presidente<br>Finalista: F.C. Azulgrana</div>
+                </div>
+                <a href="mundialito.html" class="btn">Dettagli Mundialito</a>
+            </div>
+        </div>
+
+        <!-- 2. SEZIONE SQUADRE E FORMAZIONI -->
+        <h2 class="section-title">🛡️ Rose e Formazioni (2025/2026)</h2>
+        <div class="legend">
+            ℹ️ Ogni reparto include la rosa completa della stagione: i giocatori contrassegnati con <span class="badge-in">ACQ. FEB</span> sono gli innesti dell'asta di riparazione dell'11/02/2026, mentre quelli contrassegnati con <span class="badge-out">CED. FEB</span> sono i giocatori ceduti a febbraio rispetto all'asta iniziale di settembre 2025.
+        </div>
+
+        <div class="rosters-grid">
+
+            <!-- A.C. LEMONSODA -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>A.C. Lemonsoda</h3>
+                    <span>Presidente: Zaffa • Cambi riparazione: 4</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Provedel</li>
+                    <li>Muric <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Montipò</li>
+                    <li class="player-out"><span class="name">Mandas</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Kabasele <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Dimarco</li>
+                    <li>Mancini G.</li>
+                    <li>Pezzella Giu.</li>
+                    <li>Del Prato</li>
+                    <li>Angori</li>
+                    <li>Gila</li>
+                    <li>Rrahmani</li>
+                    <li class="player-out"><span class="name">Vitik</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>Keita M.</li>
+                    <li>De Roon</li>
+                    <li>Fagioli</li>
+                    <li>Zielinski <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Frendrup</li>
+                    <li>Ricci</li>
+                    <li>Bernabè</li>
+                    <li>Perrone</li>
+                    <li class="player-out"><span class="name">Fazzini</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Martinez L.</li>
+                    <li>Castro</li>
+                    <li>Yildiz</li>
+                    <li>Scamacca</li>
+                    <li>Pellegrino</li>
+                    <li>Raspadori <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Cutrone</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+            </div>
+
+            <!-- F.T. MERENGUES -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>F.T. Merengues</h3>
+                    <span>Presidente: Trillo • Cambi riparazione: 9</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Carnesecchi</li>
+                    <li>Butez</li>
+                    <li>Paleari <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Leali</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Bastoni A.</li>
+                    <li>Baschirotto</li>
+                    <li>Canestrelli</li>
+                    <li>Heggem <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Scalvini</li>
+                    <li>Zappacosta</li>
+                    <li>N'Dicka</li>
+                    <li>Palestra <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Nuno Tavares</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Acerbi</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>Lobotka</li>
+                    <li>Barella</li>
+                    <li>Baturina <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Lovric <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Vlasic</li>
+                    <li>Harrison <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Mkhitaryan</li>
+                    <li>Vergara <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Collocolo</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Tramoni</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Oristanio</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Stanciu</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Pulisic</li>
+                    <li>Orban <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Esposito P.</li>
+                    <li>Lukaku</li>
+                    <li>Berardi</li>
+                    <li>Solomon <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Castellanos</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Giovane</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+            </div>
+
+            <!-- S.S. SERENISSIMI -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>S.S. Serenissimi</h3>
+                    <span>Presidente: Togno • Cambi riparazione: 7</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Sommer</li>
+                    <li>Martinez J.</li>
+                    <li>Di Gennaro</li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Dumfries</li>
+                    <li>Dodò</li>
+                    <li>Mina</li>
+                    <li>Coco</li>
+                    <li>Lazaro</li>
+                    <li>Juan Jesus <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Muharemovic <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Smolcic <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Holm</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Carlos Augusto</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Biraghi</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>McTominay</li>
+                    <li>Calhanoglu</li>
+                    <li>Koopmeiners</li>
+                    <li>Thorstvedt</li>
+                    <li>Brescianini <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Malinovskiy</li>
+                    <li>Matic <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Mandragora</li>
+                    <li class="player-out"><span class="name">Asllani</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Sohm</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Thuram M.</li>
+                    <li>Banda <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Kilicsoy <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Laurientè</li>
+                    <li>Adams</li>
+                    <li>Durosinmi <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Dovbyk</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Morata</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Nzola</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+            </div>
+
+            <!-- A.C. EQUINOX -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>A.C. Equinox</h3>
+                    <span>Presidente: Luca • Cambi riparazione: 3</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Maignan</li>
+                    <li>Terracciano</li>
+                    <li>Audero</li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Solet</li>
+                    <li>Luperto</li>
+                    <li>Spinazzola</li>
+                    <li>Cambiaso</li>
+                    <li>Doig</li>
+                    <li>Maripan</li>
+                    <li>Pongracic</li>
+                    <li>Kristensen</li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>De Bruyne</li>
+                    <li>Ederson</li>
+                    <li>Atta</li>
+                    <li>Modric</li>
+                    <li>Saelemaekers</li>
+                    <li>Da Cunha</li>
+                    <li>El Shaarawy</li>
+                    <li>Esteves</li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Leao</li>
+                    <li>Soulè</li>
+                    <li>Lookman</li>
+                    <li>Fullkrug <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Colombo <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Bonazzoli F. <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Immobile</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Gimenez</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Simeone</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+            </div>
+
+            <!-- F.C. GOTTO -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>F.C. Gotto</h3>
+                    <span>Presidente: Nini • Cambi riparazione: 3</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Meret</li>
+                    <li>Milinkovic V.</li>
+                    <li>Caprile</li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Zortea</li>
+                    <li>Buongiorno</li>
+                    <li>Gosens</li>
+                    <li>Di Lorenzo</li>
+                    <li>Marusic</li>
+                    <li>Vasquez J.</li>
+                    <li>Ramon</li>
+                    <li>Valeri</li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>Anguissa</li>
+                    <li>Zaniolo <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Zalewski</li>
+                    <li>Baldanzi <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Vandeputte</li>
+                    <li>Rovella</li>
+                    <li>Maldini D.</li>
+                    <li>Pasalic</li>
+                    <li class="player-out"><span class="name">Guendouzi</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Carboni V.</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Gudmundsson</li>
+                    <li>Orsolini</li>
+                    <li>Krstovic</li>
+                    <li>Esposito S.</li>
+                    <li>De Ketelaere</li>
+                    <li>Giovane <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Dia</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+            </div>
+
+            <!-- NONLOSO -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>Nonloso</h3>
+                    <span>Presidente: Camel • Cambi riparazione: 4</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Di Gregorio</li>
+                    <li>Perin</li>
+                    <li>Pinsoglio</li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Bremer</li>
+                    <li>Kalulu</li>
+                    <li>Luis Henrique</li>
+                    <li>Hien</li>
+                    <li>Tomori</li>
+                    <li>Idzes <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Veiga <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Zappa</li>
+                    <li class="player-out"><span class="name">Gatti</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Estupinan</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>Paz N.</li>
+                    <li>Locatelli</li>
+                    <li>Thuram K.</li>
+                    <li>Ferguson L.</li>
+                    <li>Fabbian</li>
+                    <li>McKennie <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Sulemana</li>
+                    <li>Taylor <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Diouf</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Jashari</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Vlahovic</li>
+                    <li>David</li>
+                    <li>Nkunku</li>
+                    <li>Zaccagni</li>
+                    <li>Vardy</li>
+                    <li>Conceicao F.</li>
+                </ul>
+            </div>
+
+            <!-- F.C. BORGOROSSO -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>F.C. Borgorosso</h3>
+                    <span>Presidente: Toi • Cambi riparazione: 2</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Skorupski</li>
+                    <li>De Gea</li>
+                    <li>Ravaglia</li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Vojvoda</li>
+                    <li>Bellanova</li>
+                    <li>Akanji</li>
+                    <li>S. Martin</li>
+                    <li>Lucumì</li>
+                    <li>Miranda J.</li>
+                    <li>Wesley</li>
+                    <li>De Winter</li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>Folorunsho</li>
+                    <li>Rabiot</li>
+                    <li>Sucic</li>
+                    <li>Konè M.</li>
+                    <li>Bernardeschi</li>
+                    <li>Fofana</li>
+                    <li>Loftus-Cheek</li>
+                    <li>Frattesi</li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Hojlund</li>
+                    <li>Ferguson E.</li>
+                    <li>Douvikas <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Vitinha</li>
+                    <li>Politano</li>
+                    <li>Kuhn <span class="badge-in">ACQ. FEB</span></li>
+                    <li class="player-out"><span class="name">Lucca</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Camarda</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+            </div>
+
+            <!-- F.C. AZULGRANA -->
+            <div class="roster-card">
+                <div class="roster-header">
+                    <h3>F.C. Azulgrana</h3>
+                    <span>Presidente: Saa • Cambi riparazione: 4</span>
+                </div>
+                <div class="role-title">Portieri</div>
+                <ul class="player-list">
+                    <li>Suzuki</li>
+                    <li>Svilar</li>
+                    <li>Falcone</li>
+                </ul>
+                <div class="role-title">Difensori</div>
+                <ul class="player-list">
+                    <li>Norton-Cuffy</li>
+                    <li>Valle</li>
+                    <li>Pavlovic</li>
+                    <li>Djimsiti</li>
+                    <li>Angelino</li>
+                    <li>Gabbia</li>
+                    <li>Ostigard</li>
+                    <li>Comuzzo</li>
+                </ul>
+                <div class="role-title">Centrocampisti</div>
+                <ul class="player-list">
+                    <li>Ekkelenkamp</li>
+                    <li>Gaetano <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Freuler</li>
+                    <li>Berisha <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Sottil</li>
+                    <li>Aebischer</li>
+                    <li>Casadei</li>
+                    <li>Karlstrom</li>
+                    <li class="player-out"><span class="name">Ordonez</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Harroui</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+                <div class="role-title">Attaccanti</div>
+                <ul class="player-list">
+                    <li>Kean</li>
+                    <li>Isaksen</li>
+                    <li>Dybala</li>
+                    <li>Malen <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Moreo <span class="badge-in">ACQ. FEB</span></li>
+                    <li>Pinamonti</li>
+                    <li class="player-out"><span class="name">Neres</span> <span class="badge-out">CED. FEB</span></li>
+                    <li class="player-out"><span class="name">Zapata D.</span> <span class="badge-out">CED. FEB</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Fantaprica.it • Lega Fanta-Prica dal 1995/1996</p>
+    </footer>
+
+</body>
+</html>
