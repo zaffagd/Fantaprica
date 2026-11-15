@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31° Campionato 2025/2026 - Fantaprica</title>
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d8f3dc;
+            --gold-color: #d4af37;
+            --text-dark: #212529;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            transition: background 0.2s;
+        }
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+        }
+        /* Tabella Classifica */
+        .table-wrapper {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.06);
+            overflow-x: auto;
+            border-top: 5px solid var(--gold-color);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        th, td {
+            padding: 0.85rem 0.6rem;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+        td.team-col, th.team-col {
+            text-align: left;
+            padding-left: 1rem;
+        }
+        tbody tr:hover {
+            background-color: #f1f8f5;
+        }
+        tr.champion {
+            background-color: #fffdf0;
+            font-weight: 700;
+        }
+        tr.champion td.team-col {
+            color: var(--primary-color);
+        }
+        .pos-badge {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            border-radius: 50%;
+            background: #e9ecef;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        tr.champion .pos-badge {
+            background: var(--gold-color);
+            color: white;
+        }
+        /* Griglia Giornate */
+        .matchdays-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.9rem;
+            margin-top: 1.2rem;
+        }
+        .matchday-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem 0.8rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .matchday-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+            background-color: var(--accent-color);
+        }
+        .matchday-num {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary-color);
+        }
+        .matchday-sub {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #343a40;
+            color: white;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-link">← Torna alla Stagione 2025/2026</a>
+        <h1>⚽ 31° Campionato Lega Fanta-Prica (2025/2026)</h1>
+        <p>Classifica Finale (1ª – 28ª Giornata) e Archivio Risultati</p>
+    </header>
+
+    <div class="container">
+
+        <!-- CLASSIFICA FINALE -->
+        <h2 class="section-title">🏆 Classifica Finale</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th class="team-col">Squadra</th>
+                        <th>PT</th>
+                        <th>Score</th>
+                        <th>G</th>
+                        <th>V</th>
+                        <th>N</th>
+                        <th>P</th>
+                        <th>GF</th>
+                        <th>GS</th>
+                        <th>DR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="champion">
+                        <td><span class="pos-badge">1</span></td>
+                        <td class="team-col">A.C. Lemonsoda 🏆</td>
+                        <td><strong>63</strong></td>
+                        <td>2060.5</td>
+                        <td>28</td>
+                        <td>20</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>64</td>
+                        <td>29</td>
+                        <td>+35</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pos-badge">2</span></td>
+                        <td class="team-col">F.T. Merengues</td>
+                        <td><strong>45</strong></td>
+                        <td>1971.5</td>
+                        <td>28</td>
+                        <td>13</td>
+                        <td>6</td>
+                        <td>9</td>
+                        <td>44</td>
+                        <td>42</td>
+                        <td>+2</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pos-badge">3</span></td>
+                        <td class="team-col">S.S. Serenissimi</td>
+                        <td><strong>41</strong></td>
+                        <td>2008.5</td>
+                        <td>28</td>
+                        <td>12</td>
+                        <td>5</td>
+                        <td>11</td>
+                        <td>54</td>
+                        <td>46</td>
+                        <td>+8</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pos-badge">4</span></td>
+                        <td class="team-col">A.C. Equinox</td>
+                        <td><strong>37</strong></td>
+                        <td>2032.0</td>
+                        <td>28</td>
+                        <td>11</td>
+                        <td>4</td>
+                        <td>13</td>
+                        <td>59</td>
+                        <td>55</td>
+                        <td>+4</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pos-badge">5</span></td>
+                        <td class="team-col">F.C. Gotto</td>
+                        <td><strong>37</strong></td>
+                        <td>1942.5</td>
+                        <td>28</td>
+                        <td>10</td>
+                        <td>7</td>
+                        <td>11</td>
+                        <td>40</td>
+                        <td>47</td>
+                        <td>-7</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pos-badge">6</span></td>
+                        <td class="team-col">Nonloso</td>
+                        <td><strong>33</strong></td>
+                        <td>1948.5</td>
+                        <td>28</td>
+                        <td>9</td>
+                        <td>6</td>
+                        <td>13</td>
+                        <td>44</td>
+                        <td>54</td>
+                        <td>-10</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pos-badge">7</span></td>
+                        <td class="team-col">F.C. Borgorosso</td>
+                        <td><strong>29</strong></td>
+                        <td>1917.5</td>
+                        <td>28</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>13</td>
+                        <td>37</td>
+                        <td>54</td>
+                        <td>-17</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pos-badge">8</span></td>
+                        <td class="team-col">F.C. Azulgrana</td>
+                        <td><strong>28</strong></td>
+                        <td>1953.0</td>
+                        <td>28</td>
+                        <td>7</td>
+                        <td>7</td>
+                        <td>14</td>
+                        <td>42</td>
+                        <td>57</td>
+                        <td>-15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ARCHIVIO DELLE 28 GIORNATE -->
+        <h2 class="section-title">📅 Le 28 Giornate di Campionato</h2>
+        <div class="matchdays-grid">
+            <a href="campionato/giornata-01.html" class="matchday-card"><span class="matchday-num">1ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-02.html" class="matchday-card"><span class="matchday-num">2ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-03.html" class="matchday-card"><span class="matchday-num">3ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-04.html" class="matchday-card"><span class="matchday-num">4ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-05.html" class="matchday-card"><span class="matchday-num">5ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-06.html" class="matchday-card"><span class="matchday-num">6ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-07.html" class="matchday-card"><span class="matchday-num">7ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-08.html" class="matchday-card"><span class="matchday-num">8ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-09.html" class="matchday-card"><span class="matchday-num">9ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-10.html" class="matchday-card"><span class="matchday-num">10ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-11.html" class="matchday-card"><span class="matchday-num">11ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-12.html" class="matchday-card"><span class="matchday-num">12ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-13.html" class="matchday-card"><span class="matchday-num">13ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-14.html" class="matchday-card"><span class="matchday-num">14ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-15.html" class="matchday-card"><span class="matchday-num">15ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-16.html" class="matchday-card"><span class="matchday-num">16ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-17.html" class="matchday-card"><span class="matchday-num">17ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-18.html" class="matchday-card"><span class="matchday-num">18ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-19.html" class="matchday-card"><span class="matchday-num">19ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-20.html" class="matchday-card"><span class="matchday-num">20ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-21.html" class="matchday-card"><span class="matchday-num">21ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-22.html" class="matchday-card"><span class="matchday-num">22ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-23.html" class="matchday-card"><span class="matchday-num">23ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-24.html" class="matchday-card"><span class="matchday-num">24ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-25.html" class="matchday-card"><span class="matchday-num">25ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-26.html" class="matchday-card"><span class="matchday-num">26ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-27.html" class="matchday-card"><span class="matchday-num">27ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+            <a href="campionato/giornata-28.html" class="matchday-card"><span class="matchday-num">28ª Giornata</span><span class="matchday-sub">Risultati e tabellini</span></a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Fantaprica.it • Lega Fanta-Prica dal 1995/1996</p>
+    </footer>
+
+</body>
+</html>
