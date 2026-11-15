@@ -76,35 +76,42 @@
         /* Griglia delle Squadre */
         .teams-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1rem;
         }
         .team-card {
             background: white;
             border-radius: 8px;
-            padding: 1rem;
+            padding: 1.2rem 1rem;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 4px solid var(--primary-color);
         }
         .team-card:hover {
             transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .team-card h4 {
-            margin: 0 0 0.5rem 0;
-            color: var(--text-dark);
-            font-size: 1.1rem;
+            margin: 0 0 0.25rem 0;
+            color: var(--primary-color);
+            font-size: 1.15rem;
+        }
+        .team-president {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.6rem;
         }
         .btn {
             display: inline-block;
             background-color: var(--secondary-color);
             color: white;
-            padding: 0.4rem 0.8rem;
+            padding: 0.45rem 0.9rem;
             border-radius: 4px;
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
             transition: background-color 0.2s;
         }
         .btn:hover {
@@ -124,7 +131,7 @@
 
     <header>
         <h1>🏆 Fantaprica</h1>
-        <p>Lega Fantacalcio Storica • Oltre 30 anni di gloria e competizioni</p>
+        <p>Lega Fanta-Prica • Oltre 30 anni di gloria e competizioni dal 1995/1996</p>
     </header>
 
     <div class="container">
@@ -183,26 +190,50 @@
         <div class="teams-grid">
             <div class="team-card">
                 <h4>A.C. Lemonsoda</h4>
+                <div class="team-president">Presidente: Zaffa</div>
                 <a href="squadre/lemonsoda.html" class="btn">Profilo Squadra</a>
             </div>
             <div class="team-card">
                 <h4>F.T. Merengues</h4>
+                <div class="team-president">Presidente: Trillo</div>
                 <a href="squadre/merengues.html" class="btn">Profilo Squadra</a>
             </div>
             <div class="team-card">
+                <h4>S.S. Serenissimi</h4>
+                <div class="team-president">Presidente: Togno</div>
+                <a href="squadre/serenissimi.html" class="btn">Profilo Squadra</a>
+            </div>
+            <div class="team-card">
                 <h4>A.C. Equinox</h4>
+                <div class="team-president">Presidente: Luca</div>
                 <a href="squadre/equinox.html" class="btn">Profilo Squadra</a>
             </div>
             <div class="team-card">
                 <h4>F.C. Gotto</h4>
+                <div class="team-president">Presidente: Nini</div>
                 <a href="squadre/gotto.html" class="btn">Profilo Squadra</a>
+            </div>
+            <div class="team-card">
+                <h4>Nonloso</h4>
+                <div class="team-president">Presidente: Camel</div>
+                <a href="squadre/nonloso.html" class="btn">Profilo Squadra</a>
+            </div>
+            <div class="team-card">
+                <h4>F.C. Borgorosso</h4>
+                <div class="team-president">Presidente: Toi</div>
+                <a href="squadre/borgorosso.html" class="btn">Profilo Squadra</a>
+            </div>
+            <div class="team-card">
+                <h4>F.C. Azulgrana</h4>
+                <div class="team-president">Presidente: Saa</div>
+                <a href="squadre/azulgrana.html" class="btn">Profilo Squadra</a>
             </div>
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Fantaprica.it • Tutti i diritti riservati</p>
+        <p>&copy; 2026 Fantaprica.it • Lega Fanta-Prica dal 1995/1996</p>
     </footer>
 
 </body>
